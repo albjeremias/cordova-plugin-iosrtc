@@ -242,7 +242,9 @@ class PluginMediaStreamRenderer : NSObject, RTCEAGLVideoViewDelegate {
 	func save(callback: (_ data: String) -> Void,
 			  errback: (_ error: String) -> Void) {
 		//NSLog("PluginMediaStreamRenderer#save()")
-		UIGraphicsBeginImageContextWithOptions(videoView.bounds.size, videoView.isOpaque, 0.0)
+		let videoSize = CGSize(width: 540, height: 960)
+		let scale = 1.2
+		UIGraphicsBeginImageContextWithOptions(videoSize, videoView.isOpaque, scale)
 		videoView.drawHierarchy(in: videoView.bounds, afterScreenUpdates: false)
 		let snapshotImageFromMyView = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
